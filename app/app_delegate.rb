@@ -1,16 +1,27 @@
 class AppDelegate
   STATUS_BAR_ICON_SIZE = 16
 
+  FIVE_MINUTES = 300
+  FIFTEEN_MINUTES = 900
+  ONE_HOUR = 3600
+  FOUR_HOURS = 14400
+
   def applicationDidFinishLaunching(notification)
     @app_name = NSBundle.mainBundle.infoDictionary["CFBundleDisplayName"]
 
     @statusMenu = NSMenu.new
-    @statusMenu.addItem createMenuItem("About #{@app_name}",
-                                       "orderFrontStandardAboutPanel:")
-    @statusMenu.addItem createMenuItem("Toggle #{@app_name}", "toggle")
-    @statusMenu.addItem createMenuItem("Preferences", "openPreferences")
-    @statusMenu.addItem NSMenuItem.separatorItem
-    @statusMenu.addItem createMenuItem("Quit", "terminate")
+    @statusMenu.addItem(createMenuItem("About #{@app_name}",
+                                       "orderFrontStandardAboutPanel:"))
+    @statusMenu.addItem(createMenuItem("Enable", "caffeinate", [
+      {name: "5 minutes", action: "caffeinate", tag: FIVE_MINUTES},
+      {name: "15 minutes", action: "caffeinate", tag: FIFTEEN_MINUTES},
+      {name: "1 hour", action: "caffeinate", tag: ONE_HOUR},
+      {name: "4 hours", action: "caffeinate", tag: FOUR_HOURS},
+      {name: "Indefinitely", action: "caffeinate"}
+    ]))
+    @statusMenu.addItem(createMenuItem("Preferences", "openPreferences"))
+    @statusMenu.addItem(NSMenuItem.separatorItem)
+    @statusMenu.addItem(createMenuItem("Quit", "terminate"))
 
     image = NSImage.imageNamed("eye-template")
     image.setSize(NSMakeSize(STATUS_BAR_ICON_SIZE, STATUS_BAR_ICON_SIZE))
@@ -42,11 +53,27 @@ class AppDelegate
     end
   end
 
-  def caffeinate
+  def caffeinate(sender = nil)
+    # Always decaffeinate first; we might be overriding an existing run.
+    decaffeinate()
+
+    if sender
+      NSLog("Caffeinate for #{sender.tag / 60} minutes")
+      @timer = NSTimer.scheduledTimerWithTimeInterval(sender.tag,
+        :target => self,
+        :selector => "decaffeinate",
+        :userInfo => nil,
+        :repeats => false
+      )
+    else
+      NSLog("Caffeinate indefinitely")
+      timeout = []
+    end
+
     @statusItem.button.appearsDisabled = false
 
     @caffeinate = NSTask.new
-    @caffeinate.setLaunchPath('/usr/bin/caffeinate')
+    @caffeinate.setLaunchPath("/usr/bin/caffeinate")
     @caffeinate.launch
   end
 
@@ -54,12 +81,28 @@ class AppDelegate
     !!@caffeinate
   end
 
-  def createMenuItem(name, action)
-    NSMenuItem.alloc.initWithTitle(name, action: action, keyEquivalent: '')
+  def createMenuItem(name, action, subItems = nil, tag = nil)
+    item = NSMenuItem.alloc.initWithTitle(name, action: action,
+                                          keyEquivalent: '')
+    if tag
+      item.tag = tag
+    end
+
+    if subItems
+      submenu = NSMenu.new
+      subItems.each do |i|
+        submenu.addItem createMenuItem(i[:name], i[:action], nil, i[:tag])
+      end
+
+      item.setSubmenu(submenu)
+    end
+    item
   end
 
   def decaffeinate
     return unless caffeinated?
+
+    NSLog("Decaffeinating...")
 
     @statusItem.button.appearsDisabled = true
 

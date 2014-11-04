@@ -26,6 +26,10 @@ And the app will compile and start!
 
 [RubyMotion]: http://www.rubymotion.com/
 
+# License
+
+Eye icon from [Font Awesome by Dave Gandy](http://fontawesome.io/)
+
 ---
 
 Copyright (c) 2014 [Matthew Riley MacPherson](http://tofumatt.com).

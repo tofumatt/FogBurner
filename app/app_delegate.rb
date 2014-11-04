@@ -9,7 +9,7 @@ class AppDelegate
                                         'orderFrontStandardAboutPanel:')
     @status_menu.addItem createMenuItem("Toggle #{@app_name}", 'toggle')
     @status_menu.addItem createMenuItem("Preferences", 'pressAction')
-    @status_menu.addItem createMenuItem("Quit", 'terminate:')
+    @status_menu.addItem createMenuItem("Quit", 'terminate')
 
     image = NSImage.imageNamed "black-outline.png"
     image.setSize(NSMakeSize(20, 20))
@@ -30,6 +30,11 @@ class AppDelegate
 
   def openPreferences
     # TODO: Implement this.
+  end
+
+  def terminate
+    @task.terminate if @task
+    NSApp.performSelector("terminate:", withObject:nil, afterDelay: 0.0)
   end
 
   def toggle

@@ -28,6 +28,9 @@ And the app will compile and start!
 
 # License
 
+This program is free software; it is distributed under an
+[Apache License](https://github.com/tofumatt/FogBurner/blob/master/LICENSE).
+
 Eye icon from [Font Awesome by Dave Gandy](http://fontawesome.io/)
 
 ---

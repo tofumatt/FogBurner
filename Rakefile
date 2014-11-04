@@ -11,7 +11,7 @@ end
 Motion::Project::App.setup do |app|
   # Use `rake config' to see complete project settings.
   app.name = 'Fog Burner'
-  app.copyright = "Copyright © 2014 Matthew Riley MacPherson. All rights reserved."
-  app.icon = "icon.icns"
+  app.copyright = "Copyright © 2014 Matthew Riley MacPherson.\nAll rights reserved."
+  app.icon = "app.icns"
   app.info_plist['LSUIElement'] = true
 end

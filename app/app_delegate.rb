@@ -1,4 +1,6 @@
 class AppDelegate
+  STATUS_BAR_ICON_SIZE = 16
+
   def applicationDidFinishLaunching(notification)
     @app_name = NSBundle.mainBundle.infoDictionary["CFBundleDisplayName"]
 
@@ -10,15 +12,16 @@ class AppDelegate
     @statusMenu.addItem NSMenuItem.separatorItem
     @statusMenu.addItem createMenuItem("Quit", "terminate")
 
-    image = NSImage.imageNamed("black-outline")
-    image.setSize(NSMakeSize(20, 20))
+    image = NSImage.imageNamed("eye-template")
+    image.setSize(NSMakeSize(STATUS_BAR_ICON_SIZE, STATUS_BAR_ICON_SIZE))
     image.setTemplate(true)
 
     @statusItem = NSStatusBar.systemStatusBar
                              .statusItemWithLength(NSSquareStatusItemLength)
 
-    @statusItem.setTitle(nil)
-    @statusItem.button.setImage(image)
+    @statusItem.button.image = image
+    # TODO: Base on whether or not app should start enabled.
+    @statusItem.button.appearsDisabled = true
 
     @statusItem.button
                .sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
@@ -40,10 +43,7 @@ class AppDelegate
   end
 
   def caffeinate
-    image = NSImage.imageNamed "black-fill.png"
-    image.setSize(NSMakeSize(20, 20))
-
-    @statusItem.setImage image
+    @statusItem.button.appearsDisabled = false
 
     @caffeinate = NSTask.new
     @caffeinate.setLaunchPath('/usr/bin/caffeinate')
@@ -61,10 +61,7 @@ class AppDelegate
   def decaffeinate
     return unless caffeinated?
 
-    image = NSImage.imageNamed "black-outline.png"
-    image.setSize(NSMakeSize(20, 20))
-
-    @statusItem.setImage image
+    @statusItem.button.appearsDisabled = true
 
     @caffeinate.terminate
     @caffeinate = nil

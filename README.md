@@ -1,6 +1,6 @@
 # Fog Burner
 
-A simple status bar applicatiom for OS X Yosemite that prevents your Mac from
+A simple status bar application for OS X Yosemite that prevents your Mac from
 going to sleep or dimming its screen. This is useful if you're on battery
 power but want to temporarily keep your screen on without keyboard input.
 

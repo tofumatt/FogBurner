@@ -13,7 +13,5 @@ Motion::Project::App.setup do |app|
   app.name = 'Fog Burner'
   app.copyright = "Copyright © 2014 Matthew Riley MacPherson. All rights reserved."
   app.icon = "icon.icns"
-  # app.vendor_project('vendor/AXStatusItemPopup/AXStatusItemPopup', :static,
-  #                    cflags: '-fobjc-arc')
   app.info_plist['LSUIElement'] = true
 end

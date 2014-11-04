@@ -1,50 +1,89 @@
 class AppDelegate
-  attr_accessor :status_menu
+  attr_accessor :statusMenu
 
   def applicationDidFinishLaunching(notification)
-    @app_name = NSBundle.mainBundle.infoDictionary['CFBundleDisplayName']
+    @app_name = NSBundle.mainBundle.infoDictionary["CFBundleDisplayName"]
 
-    @status_menu = NSMenu.new
-    @status_menu.addItem createMenuItem("About #{@app_name}",
-                                        'orderFrontStandardAboutPanel:')
-    @status_menu.addItem createMenuItem("Toggle #{@app_name}", 'toggle')
-    @status_menu.addItem createMenuItem("Preferences", 'pressAction')
-    @status_menu.addItem createMenuItem("Quit", 'terminate')
+    @statusMenu = NSMenu.new
+    @statusMenu.addItem createMenuItem("About #{@app_name}",
+                                       "orderFrontStandardAboutPanel:")
+    @statusMenu.addItem createMenuItem("Toggle #{@app_name}", "toggle")
+    @statusMenu.addItem createMenuItem("Preferences", "openPreferences")
+    @statusMenu.addItem NSMenuItem.separatorItem
+    @statusMenu.addItem createMenuItem("Quit", "terminate")
 
     image = NSImage.imageNamed "black-outline.png"
     image.setSize(NSMakeSize(20, 20))
 
-    @status_item = NSStatusBar.systemStatusBar
-                              .statusItemWithLength(NSVariableStatusItemLength)
+    @statusItem = NSStatusBar.systemStatusBar
+                             .statusItemWithLength(NSVariableStatusItemLength)
 
-    @status_item.setAction('pressAction')
-    @status_item.setMenu(@status_menu)
-    @status_item.setHighlightMode(true)
-    @status_item.setTitle ""
-    @status_item.setImage image
+    @statusItem.setHighlightMode(false)
+    @statusItem.setTitle(nil)
+    @statusItem.setImage(image)
+
+    @statusItem.setAction(:activate)
+  end
+
+  def activate
+    event = NSApp.currentEvent
+    # If Control or Option key is being held, load the preferences.
+    if event.modifierFlags & NSControlKeyMask != 0 or
+       event.modifierFlags & NSAlternateKeyMask != 0
+      openMenu
+    else
+      toggle
+    end
   end
 
   def createMenuItem(name, action)
     NSMenuItem.alloc.initWithTitle(name, action: action, keyEquivalent: '')
   end
 
-  def openPreferences
-    # TODO: Implement this.
+  def openMenu
+    @statusItem.setHighlightMode(true)
+    @statusItem.popUpStatusItemMenu(@statusMenu)
+    @statusItem.setHighlightMode(false)
   end
 
+  # TODO: Implement this.
+  # def openPreferences
+  #
+  # end
+
   def terminate
-    @task.terminate if @task
-    NSApp.performSelector("terminate:", withObject:nil, afterDelay: 0.0)
+    turnOffCaffeinate
+    NSApp.performSelector("terminate:", withObject:nil)
   end
 
   def toggle
-    if @task
-      @task.terminate
-      @task = nil
+    if @caffeinate
+      turnOffCaffeinate
     else
-      @task = NSTask.alloc.init
-      @task.setLaunchPath('/usr/bin/caffeinate')
-      @task.launch
+      turnOnCaffeinate
     end
+  end
+
+  def turnOffCaffeinate
+    return unless @caffeinate
+
+    image = NSImage.imageNamed "black-outline.png"
+    image.setSize(NSMakeSize(20, 20))
+
+    @statusItem.setImage image
+
+    @caffeinate.terminate
+    @caffeinate = nil
+  end
+
+  def turnOnCaffeinate
+    image = NSImage.imageNamed "black-fill.png"
+    image.setSize(NSMakeSize(20, 20))
+
+    @statusItem.setImage image
+
+    @caffeinate = NSTask.new
+    @caffeinate.setLaunchPath('/usr/bin/caffeinate')
+    @caffeinate.launch
   end
 end

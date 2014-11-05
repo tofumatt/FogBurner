@@ -64,6 +64,8 @@ a:hover {
 }
 
 header {
+	background: url(../images/coffee.png) no-repeat 100% 0;
+	background-size: 128px 128px;
   padding-top: 35px;
   padding-bottom: 25px;
 }
@@ -352,6 +354,7 @@ footer a:hover {
 /* All Mobile Sizes (devices and browser) */
 @media only screen and (max-width: 767px) {
   header {
+		background-image: none;
     padding-top: 10px;
     padding-bottom: 10px;
   }

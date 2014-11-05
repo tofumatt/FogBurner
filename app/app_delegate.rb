@@ -12,14 +12,15 @@ class AppDelegate
     @statusMenu = NSMenu.new
     @statusMenu.addItem(createMenuItem("About #{@app_name}",
                                        "orderFrontStandardAboutPanel:"))
-    @statusMenu.addItem(createMenuItem("Enable", "caffeinate", [
+    @statusMenu.addItem(createMenuItem("Preferences", "openPreferences"))
+    @statusMenu.addItem(NSMenuItem.separatorItem)
+    @statusMenu.addItem(createMenuItem("Enable for:", nil, [
       {name: "5 minutes", action: "caffeinate", tag: FIVE_MINUTES},
       {name: "15 minutes", action: "caffeinate", tag: FIFTEEN_MINUTES},
       {name: "1 hour", action: "caffeinate", tag: ONE_HOUR},
       {name: "4 hours", action: "caffeinate", tag: FOUR_HOURS},
       {name: "Indefinitely", action: "caffeinate"}
     ]))
-    @statusMenu.addItem(createMenuItem("Preferences", "openPreferences"))
     @statusMenu.addItem(NSMenuItem.separatorItem)
     @statusMenu.addItem(createMenuItem("Quit", "terminate"))
 
@@ -116,7 +117,9 @@ class AppDelegate
 
   # TODO: Implement this.
   # def openPreferences
-  #
+  #   @preferencesWindowController = PreferencesWindowController.new()
+  #   @preferencesWindowController.showWindow(self)
+  #   @preferencesWindowController.window.orderFrontRegardless()
   # end
 
   def terminate

@@ -1,5 +1,6 @@
 .repl_history
 build
+ib.xcodeproj
 tags
 app/pixate_code.rb
 resources/*.nib

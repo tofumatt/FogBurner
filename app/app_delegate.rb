@@ -1,12 +1,16 @@
 class AppDelegate
-  STATUS_BAR_ICON_SIZE = 16
+  include FoggyConstants
 
-  FIVE_MINUTES = 300
-  FIFTEEN_MINUTES = 900
-  ONE_HOUR = 3600
-  FOUR_HOURS = 14400
+  attr_accessor :statusMenu
 
   def applicationDidFinishLaunching(notification)
+    # Load the defaults!
+    FoggyDefaults.loadDefaults()
+
+    # @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
+    # @window.rootViewController = PreferencesViewController.alloc.init
+    # # @window.makeKeyAndVisible
+
     @app_name = NSBundle.mainBundle.infoDictionary["CFBundleDisplayName"]
 
     @statusMenu = NSMenu.new
@@ -15,17 +19,17 @@ class AppDelegate
     @statusMenu.addItem(createMenuItem("Preferences", "openPreferences"))
     @statusMenu.addItem(NSMenuItem.separatorItem)
     @statusMenu.addItem(createMenuItem("Enable for:", nil, [
-      {name: "5 minutes", action: "caffeinate", tag: FIVE_MINUTES},
-      {name: "15 minutes", action: "caffeinate", tag: FIFTEEN_MINUTES},
-      {name: "1 hour", action: "caffeinate", tag: ONE_HOUR},
-      {name: "4 hours", action: "caffeinate", tag: FOUR_HOURS},
-      {name: "Indefinitely", action: "caffeinate"}
+      {name: "5 minutes", action: "caffeinate", tag: FiveMinutes},
+      {name: "15 minutes", action: "caffeinate", tag: FifteenMinutes},
+      {name: "1 hour", action: "caffeinate", tag: OneHour},
+      {name: "4 hours", action: "caffeinate", tag: FourHours},
+      {name: "Indefinitely", action: "caffeinate", tag: Forever}
     ]))
     @statusMenu.addItem(NSMenuItem.separatorItem)
     @statusMenu.addItem(createMenuItem("Quit", "terminate"))
 
     image = NSImage.imageNamed("eye-template")
-    image.setSize(NSMakeSize(STATUS_BAR_ICON_SIZE, STATUS_BAR_ICON_SIZE))
+    image.setSize(NSMakeSize(StatusBarIconSize, StatusBarIconSize))
     image.setTemplate(true)
 
     @statusItem = NSStatusBar.systemStatusBar
@@ -54,21 +58,23 @@ class AppDelegate
     end
   end
 
-  def caffeinate(sender = nil)
+  def caffeinate(sender = nil, timerValue = nil)
     # Always decaffeinate first; we might be overriding an existing run.
     decaffeinate()
 
-    if sender
-      NSLog("Caffeinate for #{sender.tag / 60} minutes")
-      @timer = NSTimer.scheduledTimerWithTimeInterval(sender.tag,
-        :target => self,
-        :selector => "decaffeinate",
-        :userInfo => nil,
-        :repeats => false
-      )
+    # If the sender has a tag set, it's the timerValue we should we.
+    if sender and sender.tag
+      timerValue = sender.tag
+    end
+
+    unless timerValue.nil? or timerValue == Forever
+      minutesUntilDecaffeination = timeFromConstant(timerValue)
+      NSLog("Caffeinate for #{minutesUntilDecaffeination} minutes")
+      @timer = after minutesUntilDecaffeination do
+        decaffeinate()
+      end
     else
       NSLog("Caffeinate indefinitely")
-      timeout = []
     end
 
     @statusItem.button.appearsDisabled = false
@@ -105,6 +111,8 @@ class AppDelegate
 
     NSLog("Decaffeinating...")
 
+    @timer.invalidate() if @timer
+
     @statusItem.button.appearsDisabled = true
 
     @caffeinate.terminate
@@ -116,11 +124,12 @@ class AppDelegate
   end
 
   # TODO: Implement this.
-  # def openPreferences
-  #   @preferencesWindowController = PreferencesWindowController.new()
-  #   @preferencesWindowController.showWindow(self)
-  #   @preferencesWindowController.window.orderFrontRegardless()
-  # end
+  def openPreferences
+    # @preferences = PreferencesWindow.alloc.initWithWindowNibName("PreferencesWindow")
+    # @preferences.window #.makeKeyAndOrderFront(self)
+    @mainWindowController = PreferencesWindow.alloc.initWithWindowNibName('PreferencesWindow')
+    @mainWindowController.window #.makeKeyAndOrderFront(self)
+  end
 
   def terminate
     # Make sure to disable the `caffeinate` command first; otherwise it will
@@ -135,7 +144,14 @@ class AppDelegate
     if caffeinated?
       decaffeinate()
     else
-      caffeinate()
+      # TODO: Caffeinate for default time as set in Preferences.
+      caffeinate(nil, NSUserDefaults[:timer])
     end
+  end
+
+  def timeFromConstant(constant)
+    return TimerConstantsMap[constant] if TimerConstantsMap.has_key?(constant)
+
+    raise Error, "Constant with value #{constant} not recognized."
   end
 end

@@ -4,4 +4,8 @@ gem 'rake'
 
 # gem 'motion-cocoapods'
 gem 'ib'
-gem 'sugarcube'
+gem 'sugarcube', require: [
+  'sugarcube',
+  'sugarcube-nsuserdefaults',
+  'sugarcube-timer'
+]

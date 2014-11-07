@@ -4,10 +4,10 @@ describe "Application 'FogBurner'" do
   end
 
   it "has a status menu" do
-    @app.delegate.status_menu.nil?.should == false
+    @app.delegate.statusMenu.nil?.should == false
   end
 
-  it "has four menu items" do
-    @app.delegate.status_menu.itemArray.length.should == 4
+  it "has six menu items" do
+    @app.delegate.statusMenu.itemArray.length.should == 6
   end
 end

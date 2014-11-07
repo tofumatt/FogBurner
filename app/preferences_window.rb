@@ -14,6 +14,9 @@ class PreferencesWindow < NSWindowController
 
     # Set the user's default toggle time.
     @popup.selectItemWithTag(NSUserDefaults[:timer])
+
+    # Bring the window to the front of all windows and focus it.
+    window.orderFront(self)
   end
 
   def saveDefaultBooleanPreference(sender)

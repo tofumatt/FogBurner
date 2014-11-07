@@ -7,10 +7,6 @@ class AppDelegate
     # Load the defaults!
     FoggyDefaults.loadDefaults()
 
-    # @window = UIWindow.alloc.initWithFrame(UIScreen.mainScreen.bounds)
-    # @window.rootViewController = PreferencesViewController.alloc.init
-    # # @window.makeKeyAndVisible
-
     @app_name = NSBundle.mainBundle.infoDictionary["CFBundleDisplayName"]
 
     @statusMenu = NSMenu.new
@@ -52,9 +48,9 @@ class AppDelegate
     if event.modifierFlags & NSControlKeyMask != 0 or
        event.modifierFlags & NSAlternateKeyMask != 0 or
        event.type == NSRightMouseUp
-      openMenu
+      openMenu()
     else
-      toggle
+      toggle()
     end
   end
 
@@ -81,7 +77,7 @@ class AppDelegate
 
     @caffeinate = NSTask.new
     @caffeinate.setLaunchPath("/usr/bin/caffeinate")
-    @caffeinate.launch
+    @caffeinate.launch()
   end
 
   def caffeinated?
@@ -125,10 +121,11 @@ class AppDelegate
 
   # TODO: Implement this.
   def openPreferences
-    # @preferences = PreferencesWindow.alloc.initWithWindowNibName("PreferencesWindow")
-    # @preferences.window #.makeKeyAndOrderFront(self)
-    @mainWindowController = PreferencesWindow.alloc.initWithWindowNibName('PreferencesWindow')
-    @mainWindowController.window #.makeKeyAndOrderFront(self)
+    @preferencesWindow = PreferencesWindow.alloc.initWithWindowNibName('PreferencesWindow')
+    @preferencesWindow.window
+
+    # Bring the app (i.e. the preferences window) to the front.
+    NSApp.activateIgnoringOtherApps(true)
   end
 
   def terminate

@@ -9,35 +9,9 @@ class AppDelegate
 
     @app_name = NSBundle.mainBundle.infoDictionary["CFBundleDisplayName"]
 
-    @statusMenu = NSMenu.new
-    @statusMenu.addItem(createMenuItem("About #{@app_name}",
-                                       "orderFrontStandardAboutPanel:"))
-    @statusMenu.addItem(createMenuItem("Preferences", "openPreferences"))
-    @statusMenu.addItem(NSMenuItem.separatorItem)
-    @statusMenu.addItem(createMenuItem("Enable for:", nil, [
-      {name: "5 minutes", action: "caffeinate", tag: FiveMinutes},
-      {name: "15 minutes", action: "caffeinate", tag: FifteenMinutes},
-      {name: "1 hour", action: "caffeinate", tag: OneHour},
-      {name: "4 hours", action: "caffeinate", tag: FourHours},
-      {name: "Indefinitely", action: "caffeinate", tag: Forever}
-    ]))
-    @statusMenu.addItem(NSMenuItem.separatorItem)
-    @statusMenu.addItem(createMenuItem("Quit", "terminate"))
+    createMenu()
 
-    image = NSImage.imageNamed("eye-template")
-    image.setSize(NSMakeSize(StatusBarIconSize, StatusBarIconSize))
-    image.setTemplate(true)
-
-    @statusItem = NSStatusBar.systemStatusBar
-                             .statusItemWithLength(NSSquareStatusItemLength)
-
-    @statusItem.button.image = image
-    # TODO: Base on whether or not app should start enabled.
-    @statusItem.button.appearsDisabled = true
-
-    @statusItem.button
-               .sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
-    @statusItem.setAction(:activate)
+    firstRun() unless NSUserDefaults[:firstRunComplete]
   end
 
   def activate
@@ -84,6 +58,38 @@ class AppDelegate
     !!@caffeinate
   end
 
+  def createMenu
+    @statusMenu = NSMenu.new
+    @statusMenu.addItem(createMenuItem("About #{@app_name}",
+                                       "orderFrontStandardAboutPanel:"))
+    @statusMenu.addItem(createMenuItem("Preferences", "openPreferences"))
+    @statusMenu.addItem(NSMenuItem.separatorItem)
+    @statusMenu.addItem(createMenuItem("Enable for:", nil, [
+      {name: "5 minutes", action: "caffeinate", tag: FiveMinutes},
+      {name: "15 minutes", action: "caffeinate", tag: FifteenMinutes},
+      {name: "1 hour", action: "caffeinate", tag: OneHour},
+      {name: "4 hours", action: "caffeinate", tag: FourHours},
+      {name: "Indefinitely", action: "caffeinate", tag: Forever}
+    ]))
+    @statusMenu.addItem(NSMenuItem.separatorItem)
+    @statusMenu.addItem(createMenuItem("Quit", "terminate"))
+
+    image = NSImage.imageNamed("eye-template")
+    image.setSize(NSMakeSize(StatusBarIconSize, StatusBarIconSize))
+    image.setTemplate(true)
+
+    @statusItem = NSStatusBar.systemStatusBar
+                             .statusItemWithLength(NSSquareStatusItemLength)
+
+    @statusItem.button.image = image
+    # TODO: Base on whether or not app should start enabled.
+    @statusItem.button.appearsDisabled = true
+
+    @statusItem.button
+               .sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
+    @statusItem.setAction(:activate)
+  end
+
   def createMenuItem(name, action, subItems = nil, tag = nil)
     item = NSMenuItem.alloc.initWithTitle(name, action: action,
                                           keyEquivalent: '')
@@ -115,13 +121,22 @@ class AppDelegate
     @caffeinate = nil
   end
 
+  def firstRun
+    @launchWindow = OpenAtLaunchWindow.alloc.initWithWindowNibName("OpenAtLaunchWindow")
+    @launchWindow.window
+
+    # Bring the app (i.e. the preferences window) to the front.
+    NSApp.activateIgnoringOtherApps(true)
+
+    NSUserDefaults[:firstRunComplete] = true
+  end
+
   def openMenu
     @statusItem.popUpStatusItemMenu(@statusMenu)
   end
 
-  # TODO: Implement this.
   def openPreferences
-    @preferencesWindow = PreferencesWindow.alloc.initWithWindowNibName('PreferencesWindow')
+    @preferencesWindow = PreferencesWindow.alloc.initWithWindowNibName("PreferencesWindow")
     @preferencesWindow.window
 
     # Bring the app (i.e. the preferences window) to the front.
@@ -134,14 +149,13 @@ class AppDelegate
     decaffeinate()
 
     # Quit the app.
-    NSApp.performSelector("terminate:", withObject:nil)
+    NSApp.performSelector("terminate:", withObject: nil)
   end
 
   def toggle
     if caffeinated?
       decaffeinate()
     else
-      # TODO: Caffeinate for default time as set in Preferences.
       caffeinate(nil, NSUserDefaults[:timer])
     end
   end

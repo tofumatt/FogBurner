@@ -3,6 +3,7 @@ class FoggyDefaults
 
   InitialSettings = {
     activateOnLaunch: NSOffState,
+    firstRunComplete: false,
     openAtLogin: NSOffState,
     timer: Forever
   }

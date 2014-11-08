@@ -9,9 +9,18 @@ class AppDelegate
 
     @app_name = NSBundle.mainBundle.infoDictionary["CFBundleDisplayName"]
 
+    # Load the menu item.
     createMenu()
 
+    # Do any first run stuff; i.e. ask if they want Fog Burner to start on
+    # login.
     firstRun() unless NSUserDefaults[:firstRunComplete]
+
+    # Enable Fog Burner on launch if the user has enabled this preference.
+    # TODO: Use truthy values here rather than storing these integers directly.
+    if NSUserDefaults[:activateOnLaunch] == NSOnState
+      caffeinate(nil, NSUserDefaults[:timer])
+    end
   end
 
   def activate

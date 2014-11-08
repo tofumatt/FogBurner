@@ -26,4 +26,9 @@ class PreferencesWindow < NSWindowController
   def saveDefaultTimerPreference(sender)
     NSUserDefaults[:timer] = sender.selectedItem.tag
   end
+
+  def openAtLoginHandler(sender)
+    saveDefaultBooleanPreference(sender)
+    FoggyDefaults.setToOpenAtLogin(sender.state == NSOnState ? true : false)
+  end
 end

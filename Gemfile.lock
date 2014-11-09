@@ -16,7 +16,7 @@ GEM
     json (1.8.1)
     minitest (5.4.2)
     rake (10.3.2)
-    sugarcube (2.11.0)
+    sugarcube (2.11.1)
     thor (0.15.4)
     thread_safe (0.3.4)
     tilt (1.4.1)

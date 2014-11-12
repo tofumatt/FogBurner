@@ -1,0 +1,418 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		C9C9A0A81A14022300383C30 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0A71A14022300383C30 /* AppDelegate.swift */; };
+		C9C9A0AA1A14022300383C30 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0A91A14022300383C30 /* ViewController.swift */; };
+		C9C9A0AC1A14022300383C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C9A0AB1A14022300383C30 /* Images.xcassets */; };
+		C9C9A0AF1A14022300383C30 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C9C9A0AD1A14022300383C30 /* Main.storyboard */; };
+		C9C9A0BB1A14022300383C30 /* Fog_BurnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */; };
+		C9E0515A1A140286009BB244 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E051591A140285009BB244 /* MenuController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C9C9A0B51A14022300383C30 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9C9A09A1A14022300383C30 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C9C9A0A11A14022300383C30;
+			remoteInfo = "Fog Burner";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		C9C9A0A21A14022300383C30 /* Fog Burner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fog Burner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9C9A0A61A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9C9A0A71A14022300383C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		C9C9A0A91A14022300383C30 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		C9C9A0AB1A14022300383C30 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		C9C9A0AE1A14022300383C30 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		C9C9A0B41A14022300383C30 /* Fog BurnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fog BurnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C9C9A0B91A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fog_BurnerTests.swift; sourceTree = "<group>"; };
+		C9E051591A140285009BB244 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		C9C9A09F1A14022300383C30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9C9A0B11A14022300383C30 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		C9C9A0991A14022300383C30 = {
+			isa = PBXGroup;
+			children = (
+				C9C9A0A41A14022300383C30 /* Fog Burner */,
+				C9C9A0B71A14022300383C30 /* Fog BurnerTests */,
+				C9C9A0A31A14022300383C30 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		C9C9A0A31A14022300383C30 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9A0A21A14022300383C30 /* Fog Burner.app */,
+				C9C9A0B41A14022300383C30 /* Fog BurnerTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C9C9A0A41A14022300383C30 /* Fog Burner */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9A0A71A14022300383C30 /* AppDelegate.swift */,
+				C9C9A0A91A14022300383C30 /* ViewController.swift */,
+				C9C9A0AB1A14022300383C30 /* Images.xcassets */,
+				C9C9A0AD1A14022300383C30 /* Main.storyboard */,
+				C9C9A0A51A14022300383C30 /* Supporting Files */,
+				C9E051591A140285009BB244 /* MenuController.swift */,
+			);
+			path = "Fog Burner";
+			sourceTree = "<group>";
+		};
+		C9C9A0A51A14022300383C30 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9A0A61A14022300383C30 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		C9C9A0B71A14022300383C30 /* Fog BurnerTests */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */,
+				C9C9A0B81A14022300383C30 /* Supporting Files */,
+			);
+			path = "Fog BurnerTests";
+			sourceTree = "<group>";
+		};
+		C9C9A0B81A14022300383C30 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9A0B91A14022300383C30 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		C9C9A0A11A14022300383C30 /* Fog Burner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9C9A0BE1A14022300383C30 /* Build configuration list for PBXNativeTarget "Fog Burner" */;
+			buildPhases = (
+				C9C9A09E1A14022300383C30 /* Sources */,
+				C9C9A09F1A14022300383C30 /* Frameworks */,
+				C9C9A0A01A14022300383C30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Fog Burner";
+			productName = "Fog Burner";
+			productReference = C9C9A0A21A14022300383C30 /* Fog Burner.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C9C9A0B31A14022300383C30 /* Fog BurnerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C9C9A0C11A14022300383C30 /* Build configuration list for PBXNativeTarget "Fog BurnerTests" */;
+			buildPhases = (
+				C9C9A0B01A14022300383C30 /* Sources */,
+				C9C9A0B11A14022300383C30 /* Frameworks */,
+				C9C9A0B21A14022300383C30 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C9C9A0B61A14022300383C30 /* PBXTargetDependency */,
+			);
+			name = "Fog BurnerTests";
+			productName = "Fog BurnerTests";
+			productReference = C9C9A0B41A14022300383C30 /* Fog BurnerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		C9C9A09A1A14022300383C30 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = "Matthew Riley MacPherson";
+				TargetAttributes = {
+					C9C9A0A11A14022300383C30 = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					C9C9A0B31A14022300383C30 = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = C9C9A0A11A14022300383C30;
+					};
+				};
+			};
+			buildConfigurationList = C9C9A09D1A14022300383C30 /* Build configuration list for PBXProject "Fog Burner" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = C9C9A0991A14022300383C30;
+			productRefGroup = C9C9A0A31A14022300383C30 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				C9C9A0A11A14022300383C30 /* Fog Burner */,
+				C9C9A0B31A14022300383C30 /* Fog BurnerTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		C9C9A0A01A14022300383C30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9C9A0AC1A14022300383C30 /* Images.xcassets in Resources */,
+				C9C9A0AF1A14022300383C30 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9C9A0B21A14022300383C30 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		C9C9A09E1A14022300383C30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9C9A0AA1A14022300383C30 /* ViewController.swift in Sources */,
+				C9E0515A1A140286009BB244 /* MenuController.swift in Sources */,
+				C9C9A0A81A14022300383C30 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C9C9A0B01A14022300383C30 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C9C9A0BB1A14022300383C30 /* Fog_BurnerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C9C9A0B61A14022300383C30 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C9C9A0A11A14022300383C30 /* Fog Burner */;
+			targetProxy = C9C9A0B51A14022300383C30 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		C9C9A0AD1A14022300383C30 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				C9C9A0AE1A14022300383C30 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		C9C9A0BC1A14022300383C30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		C9C9A0BD1A14022300383C30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		C9C9A0BF1A14022300383C30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Fog Burner/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		C9C9A0C01A14022300383C30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Fog Burner/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		C9C9A0C21A14022300383C30 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Fog BurnerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fog Burner.app/Contents/MacOS/Fog Burner";
+			};
+			name = Debug;
+		};
+		C9C9A0C31A14022300383C30 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "Fog BurnerTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Fog Burner.app/Contents/MacOS/Fog Burner";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C9C9A09D1A14022300383C30 /* Build configuration list for PBXProject "Fog Burner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9C9A0BC1A14022300383C30 /* Debug */,
+				C9C9A0BD1A14022300383C30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9C9A0BE1A14022300383C30 /* Build configuration list for PBXNativeTarget "Fog Burner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9C9A0BF1A14022300383C30 /* Debug */,
+				C9C9A0C01A14022300383C30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C9C9A0C11A14022300383C30 /* Build configuration list for PBXNativeTarget "Fog BurnerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C9C9A0C21A14022300383C30 /* Debug */,
+				C9C9A0C31A14022300383C30 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = C9C9A09A1A14022300383C30 /* Project object */;
+}

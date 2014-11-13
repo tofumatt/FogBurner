@@ -9,6 +9,7 @@
 import Cocoa
 
 let AppName = "Fog Burner" // NSBundle.mainBundle().objectForInfoDictionaryKey("DisplayName")
+let Preferences = Settings.load()
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -19,7 +20,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var enableSubMenu = NSMenu()
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        // Insert code here to initialize your application
+        // Get user preferences (this creates them if not already set).
+        Preferences.synchronize()
+        
         menu = createMenu()
     }
 

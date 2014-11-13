@@ -663,6 +663,7 @@
                     </connections>
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController representsSharedInstance="YES" id="Tch-fC-O96"/>
             </objects>
             <point key="canvasLocation" x="75" y="250"/>
         </scene>
@@ -694,10 +695,13 @@
                             </textField>
                             <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="ula-Do-ude">
                                 <rect key="frame" x="18" y="95" width="110" height="18"/>
-                                <buttonCell key="cell" type="check" title="Open at Login" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="shO-kt-wh8">
+                                <buttonCell key="cell" type="check" title="Open at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="shO-kt-wh8">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="openAtLogin" id="WG0-ve-Xwm"/>
+                                </connections>
                             </button>
                             <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="ySZ-Vb-duE">
                                 <rect key="frame" x="18" y="75" width="141" height="18"/>
@@ -705,6 +709,9 @@
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <connections>
+                                    <binding destination="XfG-lQ-9wD" name="value" keyPath="activateOnLaunch" id="t8K-Ye-Qgo"/>
+                                </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hUY-nH-ijP">
                                 <rect key="frame" x="18" y="52" width="103" height="17"/>

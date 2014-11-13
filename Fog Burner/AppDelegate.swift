@@ -8,6 +8,8 @@
 
 import Cocoa
 
+let AppName = "Fog Burner" // NSBundle.mainBundle().objectForInfoDictionaryKey("DisplayName")
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
@@ -26,7 +28,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
 
     func createMenu() -> NSStatusItem {
-        statusMenu.addItemWithTitle("About Fog Burner", action: nil, keyEquivalent: "")
+        statusMenu.addItemWithTitle("About \(AppName)", action: nil, keyEquivalent: "")
         statusMenu.addItemWithTitle("Preferences", action: nil, keyEquivalent: "")
         statusMenu.addItem(NSMenuItem.separatorItem())
         
@@ -42,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusMenu.setSubmenu(enableSubMenu, forItem: enableForItem!)
         
         statusMenu.addItem(NSMenuItem.separatorItem())
-        statusMenu.addItemWithTitle("Quit", action: nil, keyEquivalent: "")
+        statusMenu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "")
         
         var image = NSImage(named: "eye-template")
         image?.setTemplate(true)

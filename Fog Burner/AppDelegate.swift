@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 Matthew Riley MacPherson. All rights reserved.
 //
 
+import ObjectiveC
+import AppKit
 import Cocoa
 
 // Obj-C defined constants
@@ -27,6 +29,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var menu : NSStatusItem?
     var statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     var statusMenu = NSMenu()
+    var caffeinated = false // Always initialized to false; if Preferences.boolForKey("activateOnLaunch") is true it's activated on launch
     var enableSubMenu = NSMenu()
     var powerManager = PowerManager()
     var prefsController : AnyObject?
@@ -46,15 +49,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func activate() -> Void {
-        var event = NSApp.currentEvent
-        NSLog("activate run")
+        var event = NSApplication.sharedApplication().currentEvent?
         
-        // If Control or Option key is being held, or it's a right-click, load the menu instead of toggling caffeination.
-//        if event?.modifierFlags() & NSControlKeyMask != 0 { // || event.modifierFlags & NSAlternateKeyMask != 0 || event.type == NSRightMouseUp {
-//            // openMenu()
-//        } else {
-//            // toggle()
-//        }
+        // If it's a right-click, load the menu instead of toggling caffeination.
+        if event?.type == NSEventType.RightMouseUp {
+            openMenu()
+        } else {
+            caffeinate()
+        }
+    }
+    
+    func caffeinate() -> Void {
+        powerManager.preventSleep()
+        
+        statusItem.button?.appearsDisabled = false
     }
     
     func createMenu() -> NSStatusItem {
@@ -69,7 +77,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         enableSubMenu.addItemWithTitle("15 minutes", action: nil, keyEquivalent: "")
         enableSubMenu.addItemWithTitle("1 hour", action: nil, keyEquivalent: "")
         enableSubMenu.addItemWithTitle("4 hours", action: nil, keyEquivalent: "")
-        enableSubMenu.addItemWithTitle("Indefinitely", action: "preventSleep", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("Indefinitely", action: "caffeinate", keyEquivalent: "")
         
         statusMenu.setSubmenu(enableSubMenu, forItem: enableForItem!)
         
@@ -79,8 +87,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         var image = NSImage(named: "eye-template")
         image?.setTemplate(true)
         
-        statusItem.button?.title = "Fog"
-        statusItem.menu = statusMenu
+        statusItem.button?.menu = statusMenu
         statusItem.button?.image = image
         
         // TODO: Base on whether or not app should start enabled.
@@ -88,8 +95,19 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         statusItem.button?.sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
         statusItem.button?.action = "activate"
+        // statusItem.button?.target = self
         
         return statusItem
+    }
+    
+    func decaffeinate() -> Void {
+        powerManager.releaseSleepAssertion()
+        
+        statusItem.button?.appearsDisabled = true
+    }
+    
+    func openMenu() -> Void {
+        statusItem.popUpStatusItemMenu(statusMenu)
     }
     
     func openPreferences() -> Void {
@@ -98,10 +116,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // prefsController = prefsWindow?.instantiateInitialController() as NSWindowController
         prefsWindow = prefsController?.window
 //        prefsController?.showWindow(self)
-    }
-    
-    func preventSleep() -> Void {
-        powerManager.preventSleep()
     }
 }
 

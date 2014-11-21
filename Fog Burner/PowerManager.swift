@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Matthew Riley MacPherson. All rights reserved.
 //
 
+import ObjectiveC
 import CoreFoundation
 import Foundation
 import IOKit.pwr_mgt
@@ -20,8 +21,11 @@ class PowerManager {
         powerAssertion = IOPMAssertionCreateWithName(kIOPMAssertionTypeNoDisplaySleep, IOPMAssertionLevel(kIOPMAssertionLevelOn), "Keep screen on for set time", &powerIDReference)
         
         if powerAssertion == kIOReturnSuccess {
-            NSLog("It actually worked!")
-            // IOPMAssertionRelease(powerIDReference)
+            NSLog("Caffeinate indefinitely")
         }
+    }
+    
+    func releaseSleepAssertion() -> Void {
+        IOPMAssertionRelease(powerIDReference)
     }
 }

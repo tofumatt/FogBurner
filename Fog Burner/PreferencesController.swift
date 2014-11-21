@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  PreferencesController.swift
 //  Fog Burner
 //
 //  Created by Matthew Riley MacPherson on 2014-11-12.

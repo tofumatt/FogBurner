@@ -13,7 +13,7 @@ import IOKit.pwr_mgt
 let kIOPMAssertionTypeNoDisplaySleep = "PreventUserIdleDisplaySleep" as CFString
 
 class PowerManager {
-    var powerIDReference : IOPMAssertionID = 0
+    var powerIDReference : IOPMAssertionID = IOPMAssertionID(0)
     var powerAssertion : IOReturn = 0
     
     func preventSleep(time : NSInteger = 0) -> Void {

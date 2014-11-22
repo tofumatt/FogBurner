@@ -15,7 +15,6 @@
 		C9C9A0AA1A14022300383C30 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0A91A14022300383C30 /* PreferencesController.swift */; };
 		C9C9A0AC1A14022300383C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C9A0AB1A14022300383C30 /* Images.xcassets */; };
 		C9C9A0BB1A14022300383C30 /* Fog_BurnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */; };
-		C9E0515A1A140286009BB244 /* MenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9E051591A140285009BB244 /* MenuController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +40,6 @@
 		C9C9A0B41A14022300383C30 /* Fog BurnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fog BurnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C9A0B91A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fog_BurnerTests.swift; sourceTree = "<group>"; };
-		C9E051591A140285009BB244 /* MenuController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,7 +88,6 @@
 				C98F06121A1FC25F004F3777 /* PowerManager.swift */,
 				C9C9A0A91A14022300383C30 /* PreferencesController.swift */,
 				C9C1007F1A1EDE7600A09D53 /* Preferences.xib */,
-				C9E051591A140285009BB244 /* MenuController.swift */,
 				C90E10741A143F010094A264 /* Settings.swift */,
 			);
 			path = "Fog Burner";
@@ -222,7 +219,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				C9C9A0AA1A14022300383C30 /* PreferencesController.swift in Sources */,
-				C9E0515A1A140286009BB244 /* MenuController.swift in Sources */,
 				C98F06131A1FC25F004F3777 /* PowerManager.swift in Sources */,
 				C90E10751A143F010094A264 /* Settings.swift in Sources */,
 				C9C9A0A81A14022300383C30 /* AppDelegate.swift in Sources */,

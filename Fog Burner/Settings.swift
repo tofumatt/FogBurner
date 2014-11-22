@@ -13,10 +13,10 @@ class Settings {
     class func load() -> NSUserDefaults {
         var preferences = NSUserDefaults.standardUserDefaults()
         preferences.registerDefaults([
-            "activateOnLaunch": false,
+            "activateOnLaunch": false, // Caffeinate on app launch
             "firstRunComplete": false,
-            "openAtLogin": false,
-            "timer": 0
+            "openAtLogin": false, // Run at user login (i.e. "open the app on launch")
+            "timer": 0 // Default timer when left-clicked, in minutes
         ])
         
         return preferences

@@ -19,7 +19,7 @@ let NSControlKeyMask = 1 << 18
 let NSAlternateKeyMask = 1 << 19
 
 let AppName = "Fog Burner" // NSBundle.mainBundle().objectForInfoDictionaryKey("DisplayName")
-let Preferences = Settings.load()
+let UserPreferences = Settings.load()
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -37,15 +37,22 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Get user preferences (this creates them if not already set).
-        Preferences.synchronize()
+        UserPreferences.synchronize()
         
         NSLog("App launched")
         
         menu = createMenu()
+        
+        if UserPreferences.boolForKey("activateOnLaunch") {
+            NSLog("Activating on launch")
+            caffeinate(UserPreferences.integerForKey("timer"))
+        }
     }
 
     func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
+        if caffeinated {
+            decaffeinate()
+        }
     }
     
     func activate() -> Void {
@@ -55,14 +62,38 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if event?.type == NSEventType.RightMouseUp {
             openMenu()
         } else {
-            caffeinate()
+            toggle()
         }
     }
     
-    func caffeinate() -> Void {
-        powerManager.preventSleep()
+    func caffeinate(timerValue: NSInteger) -> Void {
+        // If the sender has a tag set, it's the timerValue we should use.
+        NSLog("timerValue: %i", timerValue)
         
+        powerManager.preventSleep(time: timerValue)
+        
+        caffeinated = true
         statusItem.button?.appearsDisabled = false
+    }
+    
+    func caffeinateFiveMinutes() -> Void {
+        caffeinate(5)
+    }
+    
+    func caffeinateFifteenMinutes() -> Void {
+        caffeinate(15)
+    }
+    
+    func caffeinateOneHour() -> Void {
+        caffeinate(60)
+    }
+    
+    func caffeinateFourHours() -> Void {
+        caffeinate(240)
+    }
+    
+    func caffeinateForever() -> Void {
+        caffeinate(0)
     }
     
     func createMenu() -> NSStatusItem {
@@ -73,11 +104,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Handle the "Enable for: [...]" submenu.
         var enableForItem = statusMenu.addItemWithTitle("Enable for:", action: nil, keyEquivalent: "")
         
-        enableSubMenu.addItemWithTitle("5 minutes", action: nil, keyEquivalent: "")
-        enableSubMenu.addItemWithTitle("15 minutes", action: nil, keyEquivalent: "")
-        enableSubMenu.addItemWithTitle("1 hour", action: nil, keyEquivalent: "")
-        enableSubMenu.addItemWithTitle("4 hours", action: nil, keyEquivalent: "")
-        enableSubMenu.addItemWithTitle("Indefinitely", action: "caffeinate", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("5 minutes", action: "caffeinateFiveMinutes", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("15 minutes", action: "caffeinateFifteenMinutes", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("1 hour", action: "caffeinateOneHour", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("4 hours", action: "caffeinateFourHours", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("Indefinitely", action: "caffeinateForever", keyEquivalent: "")
         
         statusMenu.setSubmenu(enableSubMenu, forItem: enableForItem!)
         
@@ -91,11 +122,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.image = image
         
         // TODO: Base on whether or not app should start enabled.
-        statusItem.button?.appearsDisabled = true
+        statusItem.button?.appearsDisabled = !UserPreferences.boolForKey("activateOnLaunch")
         
         statusItem.button?.sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
         statusItem.button?.action = "activate"
-        // statusItem.button?.target = self
         
         return statusItem
     }
@@ -103,6 +133,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     func decaffeinate() -> Void {
         powerManager.releaseSleepAssertion()
         
+        caffeinated = false
         statusItem.button?.appearsDisabled = true
     }
     
@@ -111,11 +142,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func openPreferences() -> Void {
-        NSLog("OPEN PREFS")
-        prefsController = PreferencesController.init(windowNibName: "Preferences")
-        // prefsController = prefsWindow?.instantiateInitialController() as NSWindowController
+        prefsController = PreferencesController(windowNibName: "Preferences")
         prefsWindow = prefsController?.window
-//        prefsController?.showWindow(self)
+        
+        NSApp.activateIgnoringOtherApps(true)
+    }
+    
+    func toggle() -> Void {
+        if caffeinated {
+            decaffeinate()
+        } else {
+            caffeinate(UserPreferences.integerForKey("timer"))
+        }
     }
 }
-

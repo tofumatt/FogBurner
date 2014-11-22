@@ -4,7 +4,13 @@
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6250"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="PreferencesController" customModule="Fog_Burner" customModuleProvider="target"/>
+        <customObject id="-2" userLabel="File's Owner" customClass="PreferencesController" customModule="Fog_Burner" customModuleProvider="target">
+            <connections>
+                <outlet property="activateOnLaunch" destination="fHc-0W-vGQ" id="URq-cB-mqc"/>
+                <outlet property="openAtLogin" destination="hfl-t3-55P" id="fIY-de-e76"/>
+                <outlet property="timerDefault" destination="XYI-3F-7vW" id="GCW-PS-oSx"/>
+            </connections>
+        </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Fog Burner Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
@@ -14,7 +20,7 @@
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
             <value key="minSize" type="size" width="480" height="214"/>
             <value key="maxSize" type="size" width="480" height="214"/>
-            <view key="contentView" id="EiT-Mj-1SZ">
+            <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
                 <rect key="frame" x="0.0" y="0.0" width="480" height="214"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
@@ -32,6 +38,9 @@
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="saveOpenAtLoginPreference:" target="-2" id="fnI-bs-1g7"/>
+                        </connections>
                     </button>
                     <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fHc-0W-vGQ">
                         <rect key="frame" x="18" y="64" width="141" height="18"/>
@@ -39,6 +48,9 @@
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
                         </buttonCell>
+                        <connections>
+                            <action selector="saveActivateOnLaunchPreference:" target="-2" id="H8g-Hr-voN"/>
+                        </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1uQ-Wm-rc5">
                         <rect key="frame" x="18" y="41" width="103" height="17"/>
@@ -48,25 +60,6 @@
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYI-3F-7vW">
-                        <rect key="frame" x="125" y="36" width="127" height="26"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="122" id="94p-9u-eRQ"/>
-                        </constraints>
-                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="PUC-bZ-ZXj">
-                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="menu"/>
-                            <menu key="menu" id="aQC-Jp-fD8">
-                                <items>
-                                    <menuItem title="5 Minutes" tag="1" id="O6j-zh-ZcN"/>
-                                    <menuItem title="15 Minutes" tag="2" id="ql5-L5-GI0"/>
-                                    <menuItem title="1 Hour" tag="3" id="cde-NH-cf5"/>
-                                    <menuItem title="4 Hours" tag="4" id="jax-5R-GlS"/>
-                                    <menuItem title="Forever" id="fyy-Vm-BG9"/>
-                                </items>
-                            </menu>
-                        </popUpButtonCell>
-                    </popUpButton>
                     <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obf-qS-Trt">
                         <rect key="frame" x="384" y="13" width="82" height="32"/>
                         <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Was-iz-6u9">
@@ -77,6 +70,28 @@
                             <action selector="performClose:" target="-1" id="ZFs-6F-5GK"/>
                         </connections>
                     </button>
+                    <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYI-3F-7vW">
+                        <rect key="frame" x="125" y="36" width="127" height="26"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="122" id="94p-9u-eRQ"/>
+                        </constraints>
+                        <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="PUC-bZ-ZXj">
+                            <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="menu"/>
+                            <menu key="menu" id="aQC-Jp-fD8">
+                                <items>
+                                    <menuItem title="5 Minutes" tag="5" id="O6j-zh-ZcN"/>
+                                    <menuItem title="15 Minutes" tag="15" id="ql5-L5-GI0"/>
+                                    <menuItem title="1 Hour" tag="60" id="cde-NH-cf5"/>
+                                    <menuItem title="4 Hours" tag="240" id="jax-5R-GlS"/>
+                                    <menuItem title="Forever" id="fyy-Vm-BG9"/>
+                                </items>
+                            </menu>
+                        </popUpButtonCell>
+                        <connections>
+                            <action selector="saveDefaultTimerPreference:" target="-2" id="aXT-zj-b2W"/>
+                        </connections>
+                    </popUpButton>
                 </subviews>
             </view>
         </window>

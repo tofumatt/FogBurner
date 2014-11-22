@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Matthew Riley MacPherson. All rights reserved.
 //
 
+import AppKit
 import Cocoa
 
 class PreferencesController: NSWindowController {
@@ -13,21 +14,27 @@ class PreferencesController: NSWindowController {
     // @IBOutlet weak var window: NSWindow!
     
     // UI Elements
-    var activateOnLaunch = Preferences.boolForKey("activateOnLaunch")
-    var openAtLogin = Preferences.boolForKey("openAtLogin")
+    @IBOutlet var activateOnLaunch : NSButton!
+    @IBOutlet var openAtLogin : NSButton!
+    @IBOutlet var timerDefault : NSPopUpButton!
 
     override func windowDidLoad() {
         super.windowDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        activateOnLaunch.state = UserPreferences.boolForKey("activateOnLaunch") ? NSOnState : NSOffState
+        openAtLogin.state = UserPreferences.boolForKey("openAtLogin") ? NSOnState : NSOffState
+        timerDefault.selectItemWithTag(UserPreferences.integerForKey("timer"))
     }
-
-//    override var representedObject: AnyObject? {
-//        didSet {
-//            // Update the view, if already loaded.
-//        }
-//    }
-
-
+    
+    @IBAction func saveActivateOnLaunchPreference(sender: AnyObject) -> Void {
+        UserPreferences.setBool(sender.state == NSOnState ? true : false, forKey: "activateOnLaunch")
+    }
+    
+    @IBAction func saveDefaultTimerPreference(sender: AnyObject) -> Void {
+        UserPreferences.setInteger(sender.selectedTag(), forKey: "timer")
+    }
+    
+    @IBAction func saveOpenAtLoginPreference(sender: AnyObject) -> Void {
+        UserPreferences.setBool(sender.state == NSOnState ? true : false, forKey: "openAtLogin")
+    }
 }
-

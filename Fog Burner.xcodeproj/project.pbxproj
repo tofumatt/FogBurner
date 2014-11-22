@@ -15,6 +15,9 @@
 		C9C9A0AA1A14022300383C30 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0A91A14022300383C30 /* PreferencesController.swift */; };
 		C9C9A0AC1A14022300383C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C9A0AB1A14022300383C30 /* Images.xcassets */; };
 		C9C9A0BB1A14022300383C30 /* Fog_BurnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */; };
+		C9C9D87C1A2148C7002877B2 /* OpenAtLaunch.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9C9D87B1A2148C7002877B2 /* OpenAtLaunch.xib */; };
+		C9C9D87E1A2149BC002877B2 /* FirstRunPromptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9D87D1A2149BC002877B2 /* FirstRunPromptController.swift */; };
+		C9C9D8B81A2155E5002877B2 /* Fog Burner Helper.app in Copy Helper App */ = {isa = PBXBuildFile; fileRef = C9C9D8AE1A214F48002877B2 /* Fog Burner Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -25,13 +28,41 @@
 			remoteGlobalIDString = C9C9A0A11A14022300383C30;
 			remoteInfo = "Fog Burner";
 		};
+		C9C9D8AD1A214F48002877B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9C9D8A81A214F47002877B2 /* Fog Burner Helper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9C9D8881A214F46002877B2;
+			remoteInfo = "Fog Burner Helper";
+		};
+		C9C9D8AF1A214F48002877B2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C9C9D8A81A214F47002877B2 /* Fog Burner Helper.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C9C9D8981A214F47002877B2;
+			remoteInfo = "Fog Burner HelperTests";
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C9C9D8B31A2153BD002877B2 /* Copy Helper App */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				C9C9D8B81A2155E5002877B2 /* Fog Burner Helper.app in Copy Helper App */,
+			);
+			name = "Copy Helper App";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C90E10741A143F010094A264 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		C98F05E71A1EE165004F3777 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Application.xib; path = "Fog Burner/Application.xib"; sourceTree = "<group>"; };
+		C98F05E71A1EE165004F3777 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		C98F06121A1FC25F004F3777 /* PowerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
-		C9C1007F1A1EDE7600A09D53 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Preferences.xib; path = "Fog Burner/Preferences.xib"; sourceTree = "<group>"; };
+		C9C1007F1A1EDE7600A09D53 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		C9C9A0A21A14022300383C30 /* Fog Burner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fog Burner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C9A0A61A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C9A0A71A14022300383C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +71,9 @@
 		C9C9A0B41A14022300383C30 /* Fog BurnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fog BurnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C9A0B91A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fog_BurnerTests.swift; sourceTree = "<group>"; };
+		C9C9D87B1A2148C7002877B2 /* OpenAtLaunch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OpenAtLaunch.xib; path = ../OpenAtLaunch.xib; sourceTree = "<group>"; };
+		C9C9D87D1A2149BC002877B2 /* FirstRunPromptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstRunPromptController.swift; sourceTree = "<group>"; };
+		C9C9D8A81A214F47002877B2 /* Fog Burner Helper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Fog Burner Helper.xcodeproj"; path = "Fog Burner/Fog Burner Helper/Fog Burner Helper.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,20 +94,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		C942E9FE1A21360000B9D874 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				C98F05E71A1EE165004F3777 /* Application.xib */,
-				C9C1007F1A1EDE7600A09D53 /* Preferences.xib */,
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 		C9C9A0991A14022300383C30 = {
 			isa = PBXGroup;
 			children = (
-				C9C9A0A41A14022300383C30 /* Classes */,
-				C942E9FE1A21360000B9D874 /* Resources */,
+				C9C9D8A81A214F47002877B2 /* Fog Burner Helper.xcodeproj */,
+				C9C9A0A41A14022300383C30 /* Fog Burner */,
 				C9C9A0B71A14022300383C30 /* Fog BurnerTests */,
 				C9C9A0A31A14022300383C30 /* Products */,
 			);
@@ -88,23 +113,26 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C9C9A0A41A14022300383C30 /* Classes */ = {
+		C9C9A0A41A14022300383C30 /* Fog Burner */ = {
 			isa = PBXGroup;
 			children = (
 				C9C9A0A71A14022300383C30 /* AppDelegate.swift */,
-				C9C9A0AB1A14022300383C30 /* Images.xcassets */,
+				C98F05E71A1EE165004F3777 /* Application.xib */,
+				C9C9D87D1A2149BC002877B2 /* FirstRunPromptController.swift */,
+				C9C9D87B1A2148C7002877B2 /* OpenAtLaunch.xib */,
 				C9C9A0A51A14022300383C30 /* Supporting Files */,
 				C98F06121A1FC25F004F3777 /* PowerManager.swift */,
 				C9C9A0A91A14022300383C30 /* PreferencesController.swift */,
+				C9C1007F1A1EDE7600A09D53 /* Preferences.xib */,
 				C90E10741A143F010094A264 /* Settings.swift */,
 			);
-			name = Classes;
 			path = "Fog Burner";
 			sourceTree = "<group>";
 		};
 		C9C9A0A51A14022300383C30 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C9C9A0AB1A14022300383C30 /* Images.xcassets */,
 				C9C9A0A61A14022300383C30 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -127,6 +155,15 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C9C9D8A91A214F47002877B2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C9C9D8AE1A214F48002877B2 /* Fog Burner Helper.app */,
+				C9C9D8B01A214F48002877B2 /* Fog Burner HelperTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,6 +174,7 @@
 				C9C9A09E1A14022300383C30 /* Sources */,
 				C9C9A09F1A14022300383C30 /* Frameworks */,
 				C9C9A0A01A14022300383C30 /* Resources */,
+				C9C9D8B31A2153BD002877B2 /* Copy Helper App */,
 			);
 			buildRules = (
 			);
@@ -194,6 +232,12 @@
 			mainGroup = C9C9A0991A14022300383C30;
 			productRefGroup = C9C9A0A31A14022300383C30 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = C9C9D8A91A214F47002877B2 /* Products */;
+					ProjectRef = C9C9D8A81A214F47002877B2 /* Fog Burner Helper.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				C9C9A0A11A14022300383C30 /* Fog Burner */,
@@ -201,6 +245,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		C9C9D8AE1A214F48002877B2 /* Fog Burner Helper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Fog Burner Helper.app";
+			remoteRef = C9C9D8AD1A214F48002877B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		C9C9D8B01A214F48002877B2 /* Fog Burner HelperTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Fog Burner HelperTests.xctest";
+			remoteRef = C9C9D8AF1A214F48002877B2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		C9C9A0A01A14022300383C30 /* Resources */ = {
@@ -210,6 +271,7 @@
 				C98F05E81A1EE165004F3777 /* Application.xib in Resources */,
 				C9C9A0AC1A14022300383C30 /* Images.xcassets in Resources */,
 				C9C100801A1EDE7600A09D53 /* Preferences.xib in Resources */,
+				C9C9D87C1A2148C7002877B2 /* OpenAtLaunch.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +292,7 @@
 				C9C9A0AA1A14022300383C30 /* PreferencesController.swift in Sources */,
 				C98F06131A1FC25F004F3777 /* PowerManager.swift in Sources */,
 				C90E10751A143F010094A264 /* Settings.swift in Sources */,
+				C9C9D87E1A2149BC002877B2 /* FirstRunPromptController.swift in Sources */,
 				C9C9A0A81A14022300383C30 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -346,6 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = "Fog Burner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";

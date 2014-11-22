@@ -35,6 +35,6 @@ class PreferencesController: NSWindowController {
     }
     
     @IBAction func saveOpenAtLoginPreference(sender: AnyObject) {
-        UserPreferences.setBool(sender.state == NSOnState ? true : false, forKey: "openAtLogin")
+        Settings.setToOpenAtLogin(sender.state == NSOnState ? true : false)
     }
 }

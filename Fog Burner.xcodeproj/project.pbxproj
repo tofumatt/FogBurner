@@ -29,9 +29,9 @@
 
 /* Begin PBXFileReference section */
 		C90E10741A143F010094A264 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
-		C98F05E71A1EE165004F3777 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
+		C98F05E71A1EE165004F3777 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Application.xib; path = "Fog Burner/Application.xib"; sourceTree = "<group>"; };
 		C98F06121A1FC25F004F3777 /* PowerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
-		C9C1007F1A1EDE7600A09D53 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
+		C9C1007F1A1EDE7600A09D53 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = Preferences.xib; path = "Fog Burner/Preferences.xib"; sourceTree = "<group>"; };
 		C9C9A0A21A14022300383C30 /* Fog Burner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fog Burner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C9A0A61A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C9A0A71A14022300383C30 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,10 +60,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C942E9FE1A21360000B9D874 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				C98F05E71A1EE165004F3777 /* Application.xib */,
+				C9C1007F1A1EDE7600A09D53 /* Preferences.xib */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
 		C9C9A0991A14022300383C30 = {
 			isa = PBXGroup;
 			children = (
-				C9C9A0A41A14022300383C30 /* Fog Burner */,
+				C9C9A0A41A14022300383C30 /* Classes */,
+				C942E9FE1A21360000B9D874 /* Resources */,
 				C9C9A0B71A14022300383C30 /* Fog BurnerTests */,
 				C9C9A0A31A14022300383C30 /* Products */,
 			);
@@ -78,18 +88,17 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		C9C9A0A41A14022300383C30 /* Fog Burner */ = {
+		C9C9A0A41A14022300383C30 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				C9C9A0A71A14022300383C30 /* AppDelegate.swift */,
-				C98F05E71A1EE165004F3777 /* Application.xib */,
 				C9C9A0AB1A14022300383C30 /* Images.xcassets */,
 				C9C9A0A51A14022300383C30 /* Supporting Files */,
 				C98F06121A1FC25F004F3777 /* PowerManager.swift */,
 				C9C9A0A91A14022300383C30 /* PreferencesController.swift */,
-				C9C1007F1A1EDE7600A09D53 /* Preferences.xib */,
 				C90E10741A143F010094A264 /* Settings.swift */,
 			);
+			name = Classes;
 			path = "Fog Burner";
 			sourceTree = "<group>";
 		};

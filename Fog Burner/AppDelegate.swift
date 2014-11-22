@@ -116,7 +116,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     }
     
     func createMenu() -> NSStatusItem {
-        statusMenu.addItemWithTitle("About \(AppName)", action: nil, keyEquivalent: "")
+        statusMenu.addItemWithTitle("About \(AppName)", action: "openAbout", keyEquivalent: "")
         statusMenu.addItemWithTitle("Preferences", action: "openPreferences", keyEquivalent: "")
         statusMenu.addItem(NSMenuItem.separatorItem())
         
@@ -164,6 +164,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         caffeinated = false
         decafTask = nil
         statusItem.button?.appearsDisabled = true
+    }
+    
+    func openAbout() {
+        NSApplication.sharedApplication().orderFrontStandardAboutPanel(nil)
     }
     
     func openMenu() {

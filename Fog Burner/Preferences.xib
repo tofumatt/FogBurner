@@ -82,8 +82,11 @@
                                 <items>
                                     <menuItem title="5 Minutes" tag="5" id="O6j-zh-ZcN"/>
                                     <menuItem title="15 Minutes" tag="15" id="ql5-L5-GI0"/>
+                                    <menuItem title="30 Minutes" tag="30" id="fB7-jf-lSu"/>
                                     <menuItem title="1 Hour" tag="60" id="cde-NH-cf5"/>
-                                    <menuItem title="4 Hours" tag="240" id="jax-5R-GlS"/>
+                                    <menuItem title="2 Hours" tag="120" id="jax-5R-GlS"/>
+                                    <menuItem title="4 Hours" tag="240" id="xT1-9m-xpP"/>
+                                    <menuItem title="7 Hours" tag="420" id="Rs8-Y0-pP6"/>
                                     <menuItem title="Forever" id="fyy-Vm-BG9"/>
                                 </items>
                             </menu>

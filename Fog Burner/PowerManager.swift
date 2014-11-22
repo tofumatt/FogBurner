@@ -17,7 +17,7 @@ class PowerManager {
     var powerIDReference : IOPMAssertionID = IOPMAssertionID(0)
     var powerAssertion : IOReturn = -100 // Just a random value to prevent release during first caffeination
     
-    func preventSleep(time : NSInteger = 0) -> Void {
+    func preventSleep(time : NSInteger = 0) {
         if powerAssertion == kIOReturnSuccess {
             NSLog("Already caffeinated; releasing assertion first.")
             releaseSleepAssertion()
@@ -27,14 +27,14 @@ class PowerManager {
         
         if powerAssertion == kIOReturnSuccess {
             if time != 0 {
-                NSLog("Caffeinate for %i minutes", time)
+                NSLog("Caffeinate for %i minute(s)", time)
             } else {
                 NSLog("Caffeinate indefinitely")
             }
         }
     }
     
-    func releaseSleepAssertion() -> Void {
+    func releaseSleepAssertion() {
         NSLog("Decaffeinating")
         IOPMAssertionRelease(powerIDReference)
     }

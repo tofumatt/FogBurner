@@ -26,15 +26,15 @@ class PreferencesController: NSWindowController {
         timerDefault.selectItemWithTag(UserPreferences.integerForKey("timer"))
     }
     
-    @IBAction func saveActivateOnLaunchPreference(sender: AnyObject) -> Void {
+    @IBAction func saveActivateOnLaunchPreference(sender: AnyObject) {
         UserPreferences.setBool(sender.state == NSOnState ? true : false, forKey: "activateOnLaunch")
     }
     
-    @IBAction func saveDefaultTimerPreference(sender: AnyObject) -> Void {
+    @IBAction func saveDefaultTimerPreference(sender: AnyObject) {
         UserPreferences.setInteger(sender.selectedTag(), forKey: "timer")
     }
     
-    @IBAction func saveOpenAtLoginPreference(sender: AnyObject) -> Void {
+    @IBAction func saveOpenAtLoginPreference(sender: AnyObject) {
         UserPreferences.setBool(sender.state == NSOnState ? true : false, forKey: "openAtLogin")
     }
 }

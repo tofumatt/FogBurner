@@ -23,17 +23,16 @@ let UserPreferences = Settings.load()
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-
-    @IBOutlet weak var window: NSWindow!
     
-    var menu : NSStatusItem?
+    var caffeinated = false // Always initialized to false; if Preferences.boolForKey("activateOnLaunch") is true it's activated on launch
+    var decafTask:NSTimer!
+    var enableSubMenu = NSMenu()
+    var menu: NSStatusItem?
+    var powerManager = PowerManager()
+    var prefsController: AnyObject?
+    var prefsWindow: AnyObject?
     var statusItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     var statusMenu = NSMenu()
-    var caffeinated = false // Always initialized to false; if Preferences.boolForKey("activateOnLaunch") is true it's activated on launch
-    var enableSubMenu = NSMenu()
-    var powerManager = PowerManager()
-    var prefsController : AnyObject?
-    var prefsWindow : AnyObject?
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Get user preferences (this creates them if not already set).
@@ -55,7 +54,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func activate() -> Void {
+    func activate() {
         var event = NSApplication.sharedApplication().currentEvent?
         
         // If it's a right-click, load the menu instead of toggling caffeination.
@@ -66,9 +65,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
     
-    func caffeinate(timerValue: NSInteger) -> Void {
-        // If the sender has a tag set, it's the timerValue we should use.
-        NSLog("timerValue: %i", timerValue)
+    func caffeinate(timerValue: NSInteger) {
+        if decafTask != nil {
+            decafTask.invalidate()
+        }
+
+        var seconds = timerValue * 60
+
+        // If the timerValue is 0, that means "forever". Otherwise make sure at the end of our timeout, we decaffeinate.
+        if timerValue != 0 {
+            decafTask = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(seconds), target: self, selector: "decaffeinate", userInfo: nil, repeats: false)
+        }
         
         powerManager.preventSleep(time: timerValue)
         
@@ -76,23 +83,35 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.button?.appearsDisabled = false
     }
     
-    func caffeinateFiveMinutes() -> Void {
+    func caffeinateFiveMinutes() {
         caffeinate(5)
     }
     
-    func caffeinateFifteenMinutes() -> Void {
+    func caffeinateFifteenMinutes() {
         caffeinate(15)
     }
     
-    func caffeinateOneHour() -> Void {
+    func caffeinateThirtyMinutes() {
+        caffeinate(30)
+    }
+    
+    func caffeinateOneHour() {
         caffeinate(60)
     }
     
-    func caffeinateFourHours() -> Void {
+    func caffeinateTwoHours() {
+        caffeinate(120)
+    }
+    
+    func caffeinateFourHours() {
         caffeinate(240)
     }
     
-    func caffeinateForever() -> Void {
+    func caffeinateSevenHours() {
+        caffeinate(420)
+    }
+    
+    func caffeinateForever() {
         caffeinate(0)
     }
     
@@ -102,12 +121,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusMenu.addItem(NSMenuItem.separatorItem())
         
         // Handle the "Enable for: [...]" submenu.
-        var enableForItem = statusMenu.addItemWithTitle("Enable for:", action: nil, keyEquivalent: "")
+        var enableForItem = statusMenu.addItemWithTitle("Activate", action: nil, keyEquivalent: "")
         
         enableSubMenu.addItemWithTitle("5 minutes", action: "caffeinateFiveMinutes", keyEquivalent: "")
         enableSubMenu.addItemWithTitle("15 minutes", action: "caffeinateFifteenMinutes", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("30 minutes", action: "caffeinateThirtyMinutes", keyEquivalent: "")
+        enableSubMenu.addItem(NSMenuItem.separatorItem())
         enableSubMenu.addItemWithTitle("1 hour", action: "caffeinateOneHour", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("2 hours", action: "caffeinateTwoHours", keyEquivalent: "")
         enableSubMenu.addItemWithTitle("4 hours", action: "caffeinateFourHours", keyEquivalent: "")
+        enableSubMenu.addItemWithTitle("7 hours", action: "caffeinateSevenHours", keyEquivalent: "")
+        enableSubMenu.addItem(NSMenuItem.separatorItem())
         enableSubMenu.addItemWithTitle("Indefinitely", action: "caffeinateForever", keyEquivalent: "")
         
         statusMenu.setSubmenu(enableSubMenu, forItem: enableForItem!)
@@ -130,25 +154,30 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return statusItem
     }
     
-    func decaffeinate() -> Void {
+    func decaffeinate() {
+        if decafTask != nil {
+            decafTask.invalidate()
+        }
+
         powerManager.releaseSleepAssertion()
         
         caffeinated = false
+        decafTask = nil
         statusItem.button?.appearsDisabled = true
     }
     
-    func openMenu() -> Void {
+    func openMenu() {
         statusItem.popUpStatusItemMenu(statusMenu)
     }
     
-    func openPreferences() -> Void {
+    func openPreferences() {
         prefsController = PreferencesController(windowNibName: "Preferences")
         prefsWindow = prefsController?.window
         
         NSApp.activateIgnoringOtherApps(true)
     }
     
-    func toggle() -> Void {
+    func toggle() {
         if caffeinated {
             decaffeinate()
         } else {

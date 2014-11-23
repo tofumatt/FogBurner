@@ -63,6 +63,7 @@
 		C96D6A701A219FF600188D7B /* OpenAtLaunch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenAtLaunch.xib; sourceTree = "<group>"; };
 		C98F05E71A1EE165004F3777 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		C98F06121A1FC25F004F3777 /* PowerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
+		C9A70D711A21BBF100C14786 /* Fog Burner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Fog Burner.entitlements"; sourceTree = "<group>"; };
 		C9C1007F1A1EDE7600A09D53 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
 		C9C9A0A21A14022300383C30 /* Fog Burner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Fog Burner.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C9A0A61A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -116,6 +117,7 @@
 		C9C9A0A41A14022300383C30 /* Fog Burner */ = {
 			isa = PBXGroup;
 			children = (
+				C9A70D711A21BBF100C14786 /* Fog Burner.entitlements */,
 				C9C9A0A71A14022300383C30 /* AppDelegate.swift */,
 				C98F05E71A1EE165004F3777 /* Application.xib */,
 				C9C9D87D1A2149BC002877B2 /* FirstRunPromptController.swift */,
@@ -214,6 +216,11 @@
 				TargetAttributes = {
 					C9C9A0A11A14022300383C30 = {
 						CreatedOnToolsVersion = 6.1;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 					C9C9A0B31A14022300383C30 = {
 						CreatedOnToolsVersion = 6.1;
@@ -397,9 +404,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Fog Burner/Fog Burner.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = "Fog Burner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -408,10 +417,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Fog Burner/Fog Burner.entitlements";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = "Fog Burner/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

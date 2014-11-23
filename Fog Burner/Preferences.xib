@@ -15,17 +15,17 @@
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <window title="Fog Burner Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" animationBehavior="default" id="QvC-M9-y7g">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES"/>
-            <rect key="contentRect" x="1129" y="754" width="480" height="214"/>
+            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
+            <rect key="contentRect" x="1169" y="808" width="440" height="193"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1177"/>
-            <value key="minSize" type="size" width="480" height="214"/>
+            <value key="minSize" type="size" width="480" height="193"/>
             <value key="maxSize" type="size" width="480" height="214"/>
             <view key="contentView" wantsLayer="YES" id="EiT-Mj-1SZ">
-                <rect key="frame" x="0.0" y="0.0" width="480" height="214"/>
+                <rect key="frame" x="0.0" y="0.0" width="440" height="193"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rsB-oo-aeQ">
-                        <rect key="frame" x="18" y="119" width="266" height="75"/>
+                        <rect key="frame" x="18" y="98" width="266" height="75"/>
                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Fog Burner prevents your display from dimming/sleeping and prevents your screen saver from appearing." id="WJs-qu-PFT">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -33,7 +33,7 @@
                         </textFieldCell>
                     </textField>
                     <button fixedFrame="YES" tag="2" translatesAutoresizingMaskIntoConstraints="NO" id="hfl-t3-55P">
-                        <rect key="frame" x="18" y="84" width="110" height="18"/>
+                        <rect key="frame" x="18" y="63" width="110" height="18"/>
                         <buttonCell key="cell" type="check" title="Open at Login" bezelStyle="regularSquare" imagePosition="left" inset="2" id="XR2-nd-ZEQ">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -43,7 +43,7 @@
                         </connections>
                     </button>
                     <button fixedFrame="YES" tag="1" translatesAutoresizingMaskIntoConstraints="NO" id="fHc-0W-vGQ">
-                        <rect key="frame" x="18" y="64" width="141" height="18"/>
+                        <rect key="frame" x="18" y="43" width="141" height="18"/>
                         <buttonCell key="cell" type="check" title="Activate on Launch" bezelStyle="regularSquare" imagePosition="left" inset="2" id="aLJ-da-wtp">
                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                             <font key="font" metaFont="system"/>
@@ -53,25 +53,15 @@
                         </connections>
                     </button>
                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1uQ-Wm-rc5">
-                        <rect key="frame" x="18" y="41" width="103" height="17"/>
+                        <rect key="frame" x="18" y="20" width="103" height="17"/>
                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Default duration" id="I2t-5t-urk">
                             <font key="font" metaFont="system"/>
                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                         </textFieldCell>
                     </textField>
-                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obf-qS-Trt">
-                        <rect key="frame" x="384" y="13" width="82" height="32"/>
-                        <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Was-iz-6u9">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="performClose:" target="-1" id="ZFs-6F-5GK"/>
-                        </connections>
-                    </button>
                     <popUpButton verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XYI-3F-7vW">
-                        <rect key="frame" x="125" y="36" width="127" height="26"/>
+                        <rect key="frame" x="125" y="15" width="127" height="26"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="122" id="94p-9u-eRQ"/>
                         </constraints>
@@ -95,8 +85,26 @@
                             <action selector="saveDefaultTimerPreference:" target="-2" id="aXT-zj-b2W"/>
                         </connections>
                     </popUpButton>
+                    <imageView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hh0-eA-rPR">
+                        <rect key="frame" x="292" y="57" width="128" height="128"/>
+                        <imageCell key="cell" refusesFirstResponder="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" image="Coffee Cup" id="A9H-bW-EFx"/>
+                    </imageView>
+                    <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Obf-qS-Trt">
+                        <rect key="frame" x="344" y="11" width="82" height="32"/>
+                        <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Was-iz-6u9">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                            <font key="font" metaFont="system"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="performClose:" target="-1" id="ZFs-6F-5GK"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="285" y="357.5"/>
         </window>
     </objects>
+    <resources>
+        <image name="Coffee Cup" width="128" height="128"/>
+    </resources>
 </document>

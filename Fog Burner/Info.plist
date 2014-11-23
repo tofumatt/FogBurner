@@ -21,7 +21,7 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>2</string>
+	<string>3</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
@@ -30,8 +30,8 @@
 	<true/>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2014 Matthew Riley MacPherson.
-This program is free software;
-it is distributed under an Apache License.</string>
+This program is free software.
+http://tofumatt.com/</string>
 	<key>NSMainNibFile</key>
 	<string>Application</string>
 	<key>NSPrincipalClass</key>

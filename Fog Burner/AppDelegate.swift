@@ -96,7 +96,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         powerManager.preventSleep(time: timerValue)
 
         caffeinated = true
-        menuItem.button?.appearsDisabled = false
+
+        if menuItem.button? != nil {
+            menuItem.button?.appearsDisabled = false
+        } else {
+            var image = NSImage(named: "eye-template")
+            menuItem.image = image
+        }
     }
 
     // TODO: Do this with tags or whatever; this is awful.
@@ -158,16 +164,37 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         mainMenu.addItem(NSMenuItem.separatorItem())
         mainMenu.addItemWithTitle("Quit", action: "terminate:", keyEquivalent: "")
 
-        var image = NSImage(named: "eye-template")
-        image?.setTemplate(true)
+        // If we're using Yosemite, we have access to a `button` property
+        // automatically instantiated on the `menuItem`; on Mavericks this
+        // won't exist and we need to set these properties on the `menuItem`
+        // directly.
+        if menuItem.button? != nil {
+            var image = NSImage(named: "eye-template")
+            image?.setTemplate(true)
 
-        menuItem.button?.menu = mainMenu
-        menuItem.button?.image = image
+            menuItem.button?.menu = mainMenu
+            menuItem.button?.image = image
 
-        menuItem.button?.appearsDisabled = !UserPreferences.boolForKey("activateOnLaunch")
+            menuItem.button?.appearsDisabled = !UserPreferences.boolForKey("activateOnLaunch")
 
-        menuItem.button?.sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
-        menuItem.button?.action = "activateMenuBarItem"
+            menuItem.button?.sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
+            menuItem.button?.action = "activateMenuBarItem"
+        } else {
+            // Mavericks doesn't create the `button` property, so we assign
+            // these things directly to our `menuItem` (doing so is deprecated
+            // in Yosemite).
+            var image:NSImage!
+            if UserPreferences.boolForKey("activateOnLaunch") {
+                image = NSImage(named: "eye-template")
+            } else {
+                image = NSImage(named: "eye-template-disabled")
+            }
+
+            menuItem.image = image
+
+            menuItem.sendActionOn(NSLeftMouseUpMask|NSRightMouseUpMask)
+            menuItem.action = "activateMenuBarItem"
+        }
     }
 
     // This releases our request to prevent the display from sleeping.
@@ -182,7 +209,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         caffeinated = false
         decafTask = nil
-        menuItem.button?.appearsDisabled = true
+
+        if menuItem.button? != nil {
+            menuItem.button?.appearsDisabled = true
+        } else {
+            var image = NSImage(named: "eye-template-disabled")
+        }
     }
 
     func firstRun() {
@@ -231,4 +263,5 @@ class AppDelegate: NSObject, NSApplicationDelegate {
             caffeinate(UserPreferences.integerForKey("timer"))
         }
     }
+
 }

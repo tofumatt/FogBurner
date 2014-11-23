@@ -35,4 +35,5 @@ class PreferencesController: NSWindowController {
     @IBAction func saveOpenAtLoginPreference(sender: AnyObject) {
         Settings.setToOpenAtLogin(sender.state == NSOnState ? true : false)
     }
+
 }

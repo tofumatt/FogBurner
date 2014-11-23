@@ -30,15 +30,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var caffeinated = false
     // Stores the timer that disables caffeination after a set amount of time.
     var decafTask:NSTimer!
+    // Houses the first run, open at login prompt.
+    var firstRunWindow: FirstRunPromptController!
     // About/Prefs/Activate/Quit main menu; activated on ^+click/right-click.
     var mainMenu = NSMenu()
     // The instance of our menu item.
     var menuItem = NSStatusBar.systemStatusBar().statusItemWithLength(-2)
     // An instance of our power manager that disables/enables display sleep.
     var powerManager = PowerManager()
-    // Prefs controller and window objects.
+    // Prefs controller.
     var prefsController: PreferencesController!
-    var prefsWindow: NSWindow!
 
     func applicationDidFinishLaunching(aNotification: NSNotification) {
         // Get user preferences (this creates them if not already set).
@@ -49,6 +50,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if UserPreferences.boolForKey("activateOnLaunch") {
             NSLog("Set to activate on launch")
             caffeinate(UserPreferences.integerForKey("timer"))
+        }
+
+        // Prompt the user to start Fog Burner at startup, but only the first
+        // time the app is launched.
+        if !UserPreferences.boolForKey("firstRunComplete") {
+            firstRun()
         }
     }
 
@@ -65,10 +72,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         if event?.type == NSEventType.RightMouseUp {
             openMenu()
         } else {
-            toggle()
+            toggleCaffeination()
         }
     }
 
+    // This creates a request (via IOKit) to prevent idle display dimming and
+    // idle display sleep. You can check this via `pmset -g`.
     func caffeinate(timerValue: NSInteger) {
         if decafTask != nil {
             decafTask.invalidate()
@@ -76,9 +85,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         var seconds = timerValue * 60
 
-        // If the timerValue is 0, that means "forever". Otherwise make sure at the end of our timeout, we decaffeinate.
+        // If the timerValue is 0, that means "forever". Otherwise make sure at
+        // the end of our timeout, we decaffeinate.
         if timerValue != 0 {
-            decafTask = NSTimer.scheduledTimerWithTimeInterval(NSTimeInterval(seconds), target: self, selector: "decaffeinate", userInfo: nil, repeats: false)
+            decafTask = NSTimer.scheduledTimerWithTimeInterval(
+                NSTimeInterval(seconds), target: self, selector: "decaffeinate",
+                userInfo: nil, repeats: false)
         }
 
         powerManager.preventSleep(time: timerValue)
@@ -87,6 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menuItem.button?.appearsDisabled = false
     }
 
+    // TODO: Do this with tags or whatever; this is awful.
     func caffeinateFiveMinutes() {
         caffeinate(5)
     }
@@ -119,6 +132,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         caffeinate(0)
     }
 
+    // This programmatically creates the menu item, populates its menu contents,
+    // and assigns actions and images to the button itself.
     func createMenu() {
         mainMenu.addItemWithTitle("About \(AppName)", action: "openAbout", keyEquivalent: "")
         mainMenu.addItemWithTitle("Preferences", action: "openPreferences", keyEquivalent: "")
@@ -155,6 +170,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menuItem.button?.action = "activateMenuBarItem"
     }
 
+    // This releases our request to prevent the display from sleeping.
+    // Running `pmset -g` will show Fog Burner is no longer listed under
+    // `displaysleep`.
     func decaffeinate() {
         if decafTask != nil {
             decafTask.invalidate()
@@ -167,22 +185,46 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menuItem.button?.appearsDisabled = true
     }
 
+    func firstRun() {
+        firstRunWindow = FirstRunPromptController(windowNibName: "OpenAtLaunch")
+        firstRunWindow.showWindow(self)
+
+        // Bring the app (i.e. this window) to the front.
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
+
+        UserPreferences.setBool(true, forKey: "firstRunComplete")
+    }
+
+    // Open the standard "about" app dialog; maybe we'll spruce this up in the
+    // future.
     func openAbout() {
         NSApplication.sharedApplication().orderFrontStandardAboutPanel(nil)
     }
 
+    // Opens the main menu, as clicking on the NSStatusItem (even with a right
+    // click action) will send the action to the "activateMenuBarItem" method.
     func openMenu() {
         menuItem.popUpStatusItemMenu(mainMenu)
     }
 
+    // Load the Preferences window.
     func openPreferences() {
-        prefsController = PreferencesController(windowNibName: "Preferences")
-        prefsWindow = prefsController?.window
+        // If a user went for the Preferences window, let's close the "first
+        // run" prompt if it's still open.
+        if firstRunWindow != nil {
+            firstRunWindow.window?.performClose(self)
+        }
 
-        NSApp.activateIgnoringOtherApps(true)
+        // Launch the Preferences controller and bring its window to the front.
+        prefsController = PreferencesController(windowNibName: "Preferences")
+        prefsController.showWindow(self)
+
+        NSApplication.sharedApplication().activateIgnoringOtherApps(true)
     }
 
-    func toggle() {
+    // Toggle the display sleep prevention, using the user preference for
+    // default time to prevent sleep as the caffeination value in minutes.
+    func toggleCaffeination() {
         if caffeinated {
             decaffeinate()
         } else {

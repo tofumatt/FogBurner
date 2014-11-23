@@ -16,7 +16,8 @@ class FirstRunPromptController: NSWindowController {
     }
     
     @IBAction func saveOpenAtLaunchPreference(sender: AnyObject) {
-        UserPreferences.setBool(sender.state == NSOnState ? true : false, forKey: "activateOnLaunch")
+        Settings.setToOpenAtLogin(true)
+        window?.performClose(sender)
     }
-    
+
 }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C90E10751A143F010094A264 /* Settings.swift in Sources */ = {isa = PBXBuildFile; fileRef = C90E10741A143F010094A264 /* Settings.swift */; };
+		C96D6A711A219FF600188D7B /* OpenAtLaunch.xib in Resources */ = {isa = PBXBuildFile; fileRef = C96D6A701A219FF600188D7B /* OpenAtLaunch.xib */; };
 		C98F05E81A1EE165004F3777 /* Application.xib in Resources */ = {isa = PBXBuildFile; fileRef = C98F05E71A1EE165004F3777 /* Application.xib */; };
 		C98F06131A1FC25F004F3777 /* PowerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C98F06121A1FC25F004F3777 /* PowerManager.swift */; };
 		C9C100801A1EDE7600A09D53 /* Preferences.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9C1007F1A1EDE7600A09D53 /* Preferences.xib */; };
@@ -15,7 +16,6 @@
 		C9C9A0AA1A14022300383C30 /* PreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0A91A14022300383C30 /* PreferencesController.swift */; };
 		C9C9A0AC1A14022300383C30 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C9C9A0AB1A14022300383C30 /* Images.xcassets */; };
 		C9C9A0BB1A14022300383C30 /* Fog_BurnerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */; };
-		C9C9D87C1A2148C7002877B2 /* OpenAtLaunch.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9C9D87B1A2148C7002877B2 /* OpenAtLaunch.xib */; };
 		C9C9D87E1A2149BC002877B2 /* FirstRunPromptController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9C9D87D1A2149BC002877B2 /* FirstRunPromptController.swift */; };
 		C9C9D8B81A2155E5002877B2 /* Fog Burner Helper.app in Copy Helper App */ = {isa = PBXBuildFile; fileRef = C9C9D8AE1A214F48002877B2 /* Fog Burner Helper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
@@ -60,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		C90E10741A143F010094A264 /* Settings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Settings.swift; sourceTree = "<group>"; };
+		C96D6A701A219FF600188D7B /* OpenAtLaunch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OpenAtLaunch.xib; sourceTree = "<group>"; };
 		C98F05E71A1EE165004F3777 /* Application.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Application.xib; sourceTree = "<group>"; };
 		C98F06121A1FC25F004F3777 /* PowerManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PowerManager.swift; sourceTree = "<group>"; };
 		C9C1007F1A1EDE7600A09D53 /* Preferences.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Preferences.xib; sourceTree = "<group>"; };
@@ -71,7 +72,6 @@
 		C9C9A0B41A14022300383C30 /* Fog BurnerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Fog BurnerTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C9C9A0B91A14022300383C30 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C9C9A0BA1A14022300383C30 /* Fog_BurnerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fog_BurnerTests.swift; sourceTree = "<group>"; };
-		C9C9D87B1A2148C7002877B2 /* OpenAtLaunch.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = OpenAtLaunch.xib; path = ../OpenAtLaunch.xib; sourceTree = "<group>"; };
 		C9C9D87D1A2149BC002877B2 /* FirstRunPromptController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstRunPromptController.swift; sourceTree = "<group>"; };
 		C9C9D8A81A214F47002877B2 /* Fog Burner Helper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "Fog Burner Helper.xcodeproj"; path = "Fog Burner/Fog Burner Helper/Fog Burner Helper.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -119,10 +119,10 @@
 				C9C9A0A71A14022300383C30 /* AppDelegate.swift */,
 				C98F05E71A1EE165004F3777 /* Application.xib */,
 				C9C9D87D1A2149BC002877B2 /* FirstRunPromptController.swift */,
-				C9C9D87B1A2148C7002877B2 /* OpenAtLaunch.xib */,
 				C9C9A0A51A14022300383C30 /* Supporting Files */,
 				C98F06121A1FC25F004F3777 /* PowerManager.swift */,
 				C9C9A0A91A14022300383C30 /* PreferencesController.swift */,
+				C96D6A701A219FF600188D7B /* OpenAtLaunch.xib */,
 				C9C1007F1A1EDE7600A09D53 /* Preferences.xib */,
 				C90E10741A143F010094A264 /* Settings.swift */,
 			);
@@ -271,7 +271,7 @@
 				C98F05E81A1EE165004F3777 /* Application.xib in Resources */,
 				C9C9A0AC1A14022300383C30 /* Images.xcassets in Resources */,
 				C9C100801A1EDE7600A09D53 /* Preferences.xib in Resources */,
-				C9C9D87C1A2148C7002877B2 /* OpenAtLaunch.xib in Resources */,
+				C96D6A711A219FF600188D7B /* OpenAtLaunch.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

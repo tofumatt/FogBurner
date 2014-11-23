@@ -10,8 +10,6 @@ import AppKit
 import Cocoa
 
 class FirstRunPromptController: NSWindowController {
-    
-    // @IBOutlet var window: NSWindow!
 
     override func windowDidLoad() {
         super.windowDidLoad()

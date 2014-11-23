@@ -11,22 +11,16 @@ import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
-    
+
     func applicationDidFinishLaunching(aNotification: NSNotification) {
-        NSLog("Quitting app")
-        // Insert code here to initialize your application
+        // Launch Fog Burner when the app is opened (should only be on user login).
         if NSWorkspace.sharedWorkspace().launchApplication("Fog Burner") {
-            NSLog("Launched Fog Burner app, quitting...")
+            NSLog("Launched Fog Burner")
         } else {
-            NSLog("Failed to launch Fog Burner app")
+            NSLog("Failed to launch Fog Burner -- was it renamed?")
         }
 
         NSApplication.sharedApplication().terminate(self)
     }
-    
-    func applicationWillTerminate(aNotification: NSNotification) {
-        // Insert code here to tear down your application
-    }
-    
-}
 
+}

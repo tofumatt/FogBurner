@@ -249,15 +249,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Opens the main menu, as clicking on the NSStatusItem (even with a right
     // click action) will send the action to the "activateMenuBarItem" method.
     func openMenu() {
-        if isMavericks {
-            menuItem.menu = mainMenu
-        }
-
         menuItem.popUpStatusItemMenu(mainMenu)
-
-        if isMavericks {
-            menuItem.menu = nil
-        }
     }
 
     // Load the Preferences window.

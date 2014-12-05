@@ -32,6 +32,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     var decafTask:NSTimer!
     // Houses the first run, open at login prompt.
     var firstRunWindow: FirstRunPromptController!
+    // Are we running on Mavericks?
+    var isMavericks = false
     // About/Prefs/Activate/Quit main menu; activated on ^+click/right-click.
     var mainMenu = NSMenu()
     // The instance of our menu item.
@@ -97,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
         caffeinated = true
 
-        if menuItem.button? != nil {
+        if !isMavericks {
             menuItem.button?.appearsDisabled = false
         } else {
             var image = NSImage(named: "eye-template")
@@ -168,7 +170,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // automatically instantiated on the `menuItem`; on Mavericks this
         // won't exist and we need to set these properties on the `menuItem`
         // directly.
-        if menuItem.button? != nil {
+        isMavericks = menuItem.button? != nil
+
+        if !isMavericks {
             var image = NSImage(named: "eye-template")
             image?.setTemplate(true)
 
@@ -197,6 +201,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    // Create a menu item with a title and tag (which is the number of
+    // minutes to caffeinate).
+    func createCaffeinateMenuItem(title:NSString, tag:NSInteger) -> NSMenuItem {
+        var caffeinateMenuItem = NSMenuItem(title: title, action: "caffeinate", keyEquivalent: "")
+        caffeinateMenuItem.tag = tag
+        return caffeinateMenuItem
+    }
+
     // This releases our request to prevent the display from sleeping.
     // Running `pmset -g` will show Fog Burner is no longer listed under
     // `displaysleep`.
@@ -210,10 +222,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         caffeinated = false
         decafTask = nil
 
-        if menuItem.button? != nil {
+        if !isMavericks {
             menuItem.button?.appearsDisabled = true
         } else {
             var image = NSImage(named: "eye-template-disabled")
+            menuItem.image = image
         }
     }
 
@@ -236,7 +249,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Opens the main menu, as clicking on the NSStatusItem (even with a right
     // click action) will send the action to the "activateMenuBarItem" method.
     func openMenu() {
+        if isMavericks {
+            menuItem.menu = mainMenu
+        }
+
         menuItem.popUpStatusItemMenu(mainMenu)
+
+        if isMavericks {
+            menuItem.menu = nil
+        }
     }
 
     // Load the Preferences window.
